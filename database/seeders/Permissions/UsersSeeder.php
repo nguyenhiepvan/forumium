@@ -9,7 +9,6 @@ use Illuminate\Database\Seeder;
 
 class UsersSeeder extends Seeder
 {
-    private $password = '$2a$12$72TkvzkAKhAMyPS9asI3C.1/VGqSt/jM2yDQikv.DzNi9EqHgMwUu'; // password
 
     public static array $admin = [
         'name' => 'Administrator',
@@ -32,7 +31,7 @@ class UsersSeeder extends Seeder
         if (!User::where('email', self::$admin['email'])->count()) {
             $data = self::$admin;
             $data['email_verified_at'] = now();
-            $data['password'] = $this->password;
+            $data['password'] = $this->getPassword();
             $data['bio'] = fake()->paragraph();
             $data['is_email_visible'] = false;
             User::create($data);
@@ -42,7 +41,7 @@ class UsersSeeder extends Seeder
         if (!User::where('email', self::$mod['email'])->count()) {
             $data = self::$mod;
             $data['email_verified_at'] = now();
-            $data['password'] = $this->password;
+            $data['password'] = $this->getPassword();
             $data['bio'] = fake()->paragraph();
             $data['is_email_visible'] = false;
             User::create($data);
@@ -60,5 +59,10 @@ class UsersSeeder extends Seeder
                     ]);
                 });
         });
+    }
+
+    private function getPassword(): string
+    {
+        return bcrypt("123456");
     }
 }
