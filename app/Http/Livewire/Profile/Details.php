@@ -20,7 +20,7 @@ class Details extends Component implements HasForms
         $this->user = auth()->user();
         $this->form->fill([
             'bio' => $this->user->bio,
-            'is_email_visible' => $this->user->is_email_visible
+            'is_email_visible' => $this->user->is_email_visible,
         ]);
     }
 
@@ -38,7 +38,7 @@ class Details extends Component implements HasForms
                 ->placeholder('Type a bio to your profile...'),
 
             Toggle::make('is_email_visible')
-                ->label('Make your email address visible on the forum')
+                ->label('Make your email address visible on the forum'),
         ];
     }
 

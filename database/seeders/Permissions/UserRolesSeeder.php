@@ -24,10 +24,10 @@ class UserRolesSeeder extends Seeder
         $role = Role::where('name', $adminRole)->first();
         if ($user && $role) {
             UserRole::where('user_id', $user->id)->where('role_id', Role::where('name', RoleConstants::MEMBER->value)->first()->id)->delete();
-            if (!UserRole::where('user_id', $user->id)->where('role_id', $role)->count()) {
+            if (! UserRole::where('user_id', $user->id)->where('role_id', $role)->count()) {
                 UserRole::create([
                     'user_id' => $user->id,
-                    'role_id' => $role->id
+                    'role_id' => $role->id,
                 ]);
             }
         }
@@ -39,10 +39,10 @@ class UserRolesSeeder extends Seeder
         $role = Role::where('name', $modRole)->first();
         if ($user && $role) {
             UserRole::where('user_id', $user->id)->where('role_id', Role::where('name', RoleConstants::MEMBER->value)->first()->id)->delete();
-            if (!UserRole::where('user_id', $user->id)->where('role_id', $role)->count()) {
+            if (! UserRole::where('user_id', $user->id)->where('role_id', $role)->count()) {
                 UserRole::create([
                     'user_id' => $user->id,
-                    'role_id' => $role->id
+                    'role_id' => $role->id,
                 ]);
             }
         }

@@ -57,7 +57,7 @@ return [
             'url' => 'https://www.gravatar.com/avatar/',
 
             // User's field used to generate avatar
-            'name_field' => 'email'
+            'name_field' => 'email',
         ],
 
         // Custom avatar (user's picture field)
@@ -66,7 +66,7 @@ return [
             'class' => \App\Helpers\CustomUserAvatar::class,
 
             // User's field used to generate avatar
-            'name_field' => 'picture'
+            'name_field' => 'picture',
         ],
     ],
 

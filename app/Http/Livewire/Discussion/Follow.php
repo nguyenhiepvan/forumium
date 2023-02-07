@@ -12,8 +12,11 @@ use Livewire\Component;
 class Follow extends Component
 {
     public Discussion $discussion;
+
     public string|null $type = null;
+
     public User|null $follower = null;
+
     public string $bgClass = 'bg-slate-400 hover:bg-slate-500';
 
     public function mount(): void
@@ -29,7 +32,7 @@ class Follow extends Component
     public function toggle(string $type): void
     {
         $follower = Follower::where('user_id', auth()->user()->id)->where('discussion_id', $this->discussion->id)->first();
-        if (!$follower) {
+        if (! $follower) {
             $follower = new Follower();
             $follower->user_id = auth()->user()->id;
             $follower->discussion_id = $this->discussion->id;

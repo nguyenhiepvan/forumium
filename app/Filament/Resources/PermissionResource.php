@@ -3,7 +3,6 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\PermissionResource\Pages;
-use App\Filament\Resources\PermissionResource\RelationManagers;
 use App\Models\Permission;
 use Filament\Forms;
 use Filament\Resources\Form;
@@ -44,7 +43,7 @@ class PermissionResource extends Resource
                     ->columnSpan(2),
 
                 Forms\Components\CheckboxList::make('roles')
-                    ->relationship('roles', 'name')
+                    ->relationship('roles', 'name'),
             ]);
     }
 
@@ -57,7 +56,7 @@ class PermissionResource extends Resource
 
                 Tables\Columns\TagsColumn::make('roles.name')
                     ->label('Roles')
-                    ->limit()
+                    ->limit(),
             ])
             ->filters([
                 //

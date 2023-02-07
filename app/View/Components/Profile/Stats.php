@@ -8,12 +8,19 @@ use Illuminate\View\Component;
 class Stats extends Component
 {
     public $user;
+
     public int $discussions;
+
     public int $replies;
+
     public int $comments;
+
     public int $likes;
+
     public int $followingDiscussions;
+
     public int $notFollowingDiscussions;
+
     public int $ignoringDiscussions;
 
     /**

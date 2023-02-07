@@ -22,7 +22,7 @@ class Username extends Component implements HasForms
     {
         $this->user = auth()->user();
         $this->form->fill([
-            'name' => $this->user->name
+            'name' => $this->user->name,
         ]);
     }
 
@@ -41,7 +41,7 @@ class Username extends Component implements HasForms
 
             Password::make('password')
                 ->label('Current password')
-                ->required()
+                ->required(),
         ];
     }
 

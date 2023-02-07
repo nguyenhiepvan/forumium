@@ -11,42 +11,42 @@ class RolePermissionsSeeder extends Seeder
 {
     private $data = [
         [
-            "role" => "Admin",
-            "permissions" => [
-                "Start discussions",
-                "Reply to discussions",
-                "Like posts",
-                "Comment posts",
-                "Pin discussions",
-                "Edit posts",
-                "Delete posts",
-                "View posts stats",
-                "Lock discussions",
-            ]
+            'role' => 'Admin',
+            'permissions' => [
+                'Start discussions',
+                'Reply to discussions',
+                'Like posts',
+                'Comment posts',
+                'Pin discussions',
+                'Edit posts',
+                'Delete posts',
+                'View posts stats',
+                'Lock discussions',
+            ],
         ],
         [
-            "role" => "Mod",
-            "permissions" => [
-                "Start discussions",
-                "Reply to discussions",
-                "Like posts",
-                "Comment posts",
-                "Pin discussions",
-                "Edit posts",
-                "Delete posts",
-                "View posts stats",
-                "Lock discussions",
-            ]
+            'role' => 'Mod',
+            'permissions' => [
+                'Start discussions',
+                'Reply to discussions',
+                'Like posts',
+                'Comment posts',
+                'Pin discussions',
+                'Edit posts',
+                'Delete posts',
+                'View posts stats',
+                'Lock discussions',
+            ],
         ],
         [
-            "role" => "Member",
-            "permissions" => [
-                "Start discussions",
-                "Reply to discussions",
-                "Like posts",
-                "Comment posts",
-            ]
-        ]
+            'role' => 'Member',
+            'permissions' => [
+                'Start discussions',
+                'Reply to discussions',
+                'Like posts',
+                'Comment posts',
+            ],
+        ],
     ];
 
     /**
@@ -61,10 +61,10 @@ class RolePermissionsSeeder extends Seeder
             if ($role) {
                 foreach ($item['permissions'] as $permission) {
                     if ($p = Permission::where('name', $permission)->first()) {
-                        if (!RolePermission::where('role_id', $role->id)->where('permission_id', $p->id)->count()) {
+                        if (! RolePermission::where('role_id', $role->id)->where('permission_id', $p->id)->count()) {
                             RolePermission::create([
                                 'role_id' => $role->id,
-                                'permission_id' => $p->id
+                                'permission_id' => $p->id,
                             ]);
                         }
                     }

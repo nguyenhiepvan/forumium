@@ -12,7 +12,7 @@ class Role extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
-        'name', 'description', 'color'
+        'name', 'description', 'color',
     ];
 
     public function users(): BelongsToMany

@@ -8,7 +8,9 @@ use Illuminate\View\Component;
 class LayoutProfile extends Component
 {
     public string|null $title;
+
     public Authenticatable $user;
+
     public int $bestAnswers = 0;
 
     /**

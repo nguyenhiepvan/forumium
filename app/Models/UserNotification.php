@@ -13,7 +13,7 @@ class UserNotification extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        'user_id', 'notification_id', 'via_web', 'via_email'
+        'user_id', 'notification_id', 'via_web', 'via_email',
     ];
 
     public function user(): BelongsTo

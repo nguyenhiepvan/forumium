@@ -25,7 +25,7 @@ class VisitsSeeder extends Seeder
                 $visit->meta = [
                     'ip' => $ip,
                     'browser' => fake()->userAgent(),
-                    'location' => $location ? $location->toArray() : []
+                    'location' => $location ? $location->toArray() : [],
                 ];
                 $visit->save();
             });

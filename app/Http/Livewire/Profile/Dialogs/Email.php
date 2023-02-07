@@ -22,7 +22,7 @@ class Email extends Component implements HasForms
     {
         $this->user = auth()->user();
         $this->form->fill([
-            'email' => $this->user->email
+            'email' => $this->user->email,
         ]);
     }
 
@@ -42,7 +42,7 @@ class Email extends Component implements HasForms
 
             Password::make('password')
                 ->label('Current password')
-                ->required()
+                ->required(),
         ];
     }
 

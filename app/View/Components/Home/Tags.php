@@ -8,6 +8,7 @@ use Illuminate\View\Component;
 class Tags extends Component
 {
     public $tags;
+
     public $tag = null;
 
     /**

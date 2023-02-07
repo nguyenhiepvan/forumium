@@ -10,10 +10,11 @@ use Livewire\Component;
 class Likes extends Component
 {
     public Discussion|Reply|Comment $model;
+
     public $likes;
 
     protected $listeners = [
-        'likesUpdated'
+        'likesUpdated',
     ];
 
     public function mount()

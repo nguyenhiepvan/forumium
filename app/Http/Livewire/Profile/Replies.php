@@ -8,18 +8,21 @@ use Livewire\Component;
 class Replies extends Component
 {
     public $user;
+
     public $limitPerPage = 10;
+
     public $disableLoadMore = false;
 
     public bool $isBest = false;
 
     protected $listeners = [
-        'loadMore'
+        'loadMore',
     ];
 
     public function render()
     {
         $replies = $this->loadData();
+
         return view('livewire.profile.replies', compact('replies'));
     }
 

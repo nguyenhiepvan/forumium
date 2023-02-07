@@ -35,11 +35,12 @@ class LatestComments extends BaseWidget
                     } else {
                         $discussion = $record->source->discussion;
                     }
+
                     return $discussion->name;
                 }),
 
             Tables\Columns\TextColumn::make('likes_count')
-                ->label('Likes')
+                ->label('Likes'),
         ];
     }
 
@@ -56,11 +57,12 @@ class LatestComments extends BaseWidget
                     } else {
                         $discussion = $record->source->discussion;
                     }
+
                     return route('discussion', [
                         'discussion' => $discussion,
-                        'slug' => Str::slug($discussion->name)
+                        'slug' => Str::slug($discussion->name),
                     ]);
-                }, true)
+                }, true),
         ];
     }
 }

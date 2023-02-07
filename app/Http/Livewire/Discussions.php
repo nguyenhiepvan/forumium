@@ -14,23 +14,29 @@ class Discussions extends Component implements HasForms
     use InteractsWithForms;
 
     public $limitPerPage = 10;
+
     public $disableLoadMore = false;
+
     public $tag;
+
     public $selectedSort;
+
     public $q;
+
     public $totalCount = 0;
 
     public function mount()
     {
         $this->q = request('q');
         $this->form->fill([
-            'sort' => 'latest'
+            'sort' => 'latest',
         ]);
     }
 
     public function render()
     {
         $discussions = $this->loadData();
+
         return view('livewire.discussions', compact('discussions'));
     }
 
@@ -56,16 +62,16 @@ class Discussions extends Component implements HasForms
                         ])
                         ->columnSpan([
                             12,
-                            'lg' => 3
+                            'lg' => 3,
                         ])
                         ->reactive()
                         ->afterStateUpdated(function () {
                             $this->loadData();
                         })
                         ->extraAttributes([
-                            'class' => 'disabled:bg-slate-100'
-                        ])
-                ])
+                            'class' => 'disabled:bg-slate-100',
+                        ]),
+                ]),
         ];
     }
 
@@ -76,7 +82,7 @@ class Discussions extends Component implements HasForms
 
         $query = Discussion::query();
 
-        if (!auth()->user() || !auth()->user()->hasVerifiedEmail()) {
+        if (! auth()->user() || ! auth()->user()->hasVerifiedEmail()) {
             $query->where('is_public', true);
         }
 
@@ -111,10 +117,10 @@ class Discussions extends Component implements HasForms
 
         if ($this->q) {
             $query->where(
-                fn($query) => $query
-                    ->where('name', 'like', '%' . $this->q . '%')
-                    ->orWhere('content', 'like', '%' . $this->q . '%')
-                    ->orWhereHas('tags', fn($query) => $query->where('name', 'like', '%' . $this->q . '%'))
+                fn ($query) => $query
+                    ->where('name', 'like', '%'.$this->q.'%')
+                    ->orWhere('content', 'like', '%'.$this->q.'%')
+                    ->orWhereHas('tags', fn ($query) => $query->where('name', 'like', '%'.$this->q.'%'))
             );
         }
 

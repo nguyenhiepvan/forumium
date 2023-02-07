@@ -11,11 +11,11 @@ class DiscussionVisit extends Model
     use HasFactory;
 
     protected $fillable = [
-        'user_id', 'discussion_id', 'meta'
+        'user_id', 'discussion_id', 'meta',
     ];
 
     protected $casts = [
-        'meta' => 'object'
+        'meta' => 'object',
     ];
 
     public static function boot()

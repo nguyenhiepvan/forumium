@@ -5,10 +5,10 @@ namespace Database\Seeders;
 use Database\Seeders\Content\CommentsSeeder;
 use Database\Seeders\Content\DiscussionsSeeder;
 use Database\Seeders\Content\LikesSeeder;
+use Database\Seeders\Content\MembersSeeder;
 use Database\Seeders\Content\PointsSeeder;
 use Database\Seeders\Content\RepliesSeeder;
 use Database\Seeders\Content\VisitsSeeder;
-use Database\Seeders\Content\MembersSeeder;
 use Illuminate\Database\Seeder;
 
 class ContentSeeder extends Seeder

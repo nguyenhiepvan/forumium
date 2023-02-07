@@ -2,7 +2,6 @@
 
 namespace Database\Factories;
 
-use App\Models\Discussion;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -20,7 +19,7 @@ class DiscussionFactory extends Factory
     {
         return [
             'name' => fake()->text(100),
-            'content' => '<p>' . fake()->paragraphs(3, true) . '</p>',
+            'content' => '<p>'.fake()->paragraphs(3, true).'</p>',
             'user_id' => User::all()->random()->id,
             'is_resolved' => collect([true, false])->random(),
             'is_public' => collect([true, false])->random(),

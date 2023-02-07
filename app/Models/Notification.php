@@ -14,12 +14,11 @@ class Notification extends Model
     protected $table = 'app_notifications';
 
     protected $fillable = [
-        'name'
+        'name',
     ];
 
     public function users(): BelongsToMany
     {
         return $this->belongsToMany(User::class, 'user_notifications', 'notification_id', 'user_id')->withPivot(['via_web', 'via_email']);
     }
-
 }

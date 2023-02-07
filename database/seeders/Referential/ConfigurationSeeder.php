@@ -9,12 +9,12 @@ class ConfigurationSeeder extends Seeder
 {
     private $data = [
         [
-            "name" => "Enable registration",
-            "is_enabled" => true
+            'name' => 'Enable registration',
+            'is_enabled' => true,
         ],
         [
-            "name" => "Enable public discussions",
-            "is_enabled" => true
+            'name' => 'Enable public discussions',
+            'is_enabled' => true,
         ],
     ];
 
@@ -26,7 +26,7 @@ class ConfigurationSeeder extends Seeder
     public function run()
     {
         foreach ($this->data as $item) {
-            if (!Configuration::where('name', $item['name'])->count()) {
+            if (! Configuration::where('name', $item['name'])->count()) {
                 Configuration::create($item);
             }
         }

@@ -73,7 +73,7 @@ class CalculateAllUsersPointsJob implements ShouldQueue
                 // Best replies
                 $user->replies()->where('is_best', true)
                     ->get()
-                    ->each(function (Reply $reply) use ($user) {
+                    ->each(function (Reply $reply) {
                         dispatch(new CalculateUserPointsJob($reply->user, $reply, PointsConstants::BEST_REPLY->value));
                     });
             });

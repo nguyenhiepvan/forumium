@@ -34,7 +34,7 @@ class LatestReplies extends BaseWidget
                 ->label('Comments'),
 
             Tables\Columns\TextColumn::make('likes_count')
-                ->label('Likes')
+                ->label('Likes'),
         ];
     }
 
@@ -47,8 +47,8 @@ class LatestReplies extends BaseWidget
                 ->color('secondary')
                 ->url(fn ($record) => route('discussion', [
                     'discussion' => $record->discussion,
-                    'slug' => Str::slug($record->discussion->name)
-                ]), true)
+                    'slug' => Str::slug($record->discussion->name),
+                ]), true),
         ];
     }
 }

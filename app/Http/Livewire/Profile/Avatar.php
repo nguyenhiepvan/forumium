@@ -14,10 +14,11 @@ class Avatar extends Component
     use WithFileUploads;
 
     public $user;
+
     public $picture;
 
     protected $listeners = [
-        'doDeleteProfilePicture'
+        'doDeleteProfilePicture',
     ];
 
     public function render()
@@ -30,7 +31,7 @@ class Avatar extends Component
         $validator = Validator::make([
             'picture' => $this->picture,
         ], [
-            'picture' => 'required|mimes:jpg,png,jpeg,svg,webp,gif|max:10240'
+            'picture' => 'required|mimes:jpg,png,jpeg,svg,webp,gif|max:10240',
         ]);
         if ($validator->fails()) {
             Filament::notify('warning', $validator->messages()->get('picture')[0]);
@@ -58,7 +59,7 @@ class Avatar extends Component
 
                 Action::make('cancel')
                     ->label('Cancel')
-                    ->close()
+                    ->close(),
             ])
             ->persistent()
             ->send();

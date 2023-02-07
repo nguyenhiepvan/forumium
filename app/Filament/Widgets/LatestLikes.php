@@ -39,6 +39,7 @@ class LatestLikes extends BaseWidget
                     } else {
                         $discussion = $record->source->source->discussion;
                     }
+
                     return $discussion->name;
                 }),
         ];
@@ -61,11 +62,12 @@ class LatestLikes extends BaseWidget
                     } else {
                         $discussion = $record->source->source->discussion;
                     }
+
                     return route('discussion', [
                         'discussion' => $discussion,
-                        'slug' => Str::slug($discussion->name)
+                        'slug' => Str::slug($discussion->name),
                     ]);
-                }, true)
+                }, true),
         ];
     }
 }

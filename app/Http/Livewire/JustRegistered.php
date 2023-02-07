@@ -9,6 +9,7 @@ use Livewire\Component;
 class JustRegistered extends Component
 {
     public int $user;
+
     public User|null $userObj;
 
     public function mount()

@@ -3,8 +3,6 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\TagResource\Pages;
-use App\Filament\Resources\TagResource\RelationManagers;
-use App\Models\Role;
 use App\Models\Tag;
 use Filament\Forms;
 use Filament\Resources\Form;
@@ -12,8 +10,6 @@ use Filament\Resources\Pages\EditRecord;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Illuminate\Support\HtmlString;
 
 class TagResource extends Resource
@@ -56,7 +52,7 @@ class TagResource extends Resource
                     ->placeholder('e.g. fa-solid fa-house')
                     ->hint(fn () => new HtmlString('Please refer to <a class="text-blue-500 underline hover:cursor-pointer hover:text-blue-700" href="https://fontawesome.com/search?o=r&m=free" target="_blank">Fontawesome website</a> to choose your icon'))
                     ->required()
-                    ->columnSpan(2)
+                    ->columnSpan(2),
             ]);
     }
 
@@ -69,7 +65,7 @@ class TagResource extends Resource
 
                 Tables\Columns\TextColumn::make('icon')
                     ->label('Icon')
-                    ->formatStateUsing(fn (string $state) => new HtmlString('<i class="' . $state . '"></i>')),
+                    ->formatStateUsing(fn (string $state) => new HtmlString('<i class="'.$state.'"></i>')),
 
                 Tables\Columns\TextColumn::make('name')
                     ->label('Name'),

@@ -9,17 +9,22 @@ use Livewire\Component;
 class Replies extends Component
 {
     public Discussion $discussion;
+
     public Reply|null $selectedReply = null;
+
     public $limitPerPage = 10;
+
     public $disableLoadMore = false;
+
     public $onlyBest = false;
+
     public $onlyBestEnabled = false;
 
     protected $listeners = [
         'replyAdded' => 'updateReplies',
         'replyUpdated' => 'updateReplies',
         'replyDeleted' => 'updateReplies',
-        'discussionEdited' => 'updateReplies'
+        'discussionEdited' => 'updateReplies',
     ];
 
     public function mount(): void
@@ -30,6 +35,7 @@ class Replies extends Component
     public function render()
     {
         $replies = $this->loadData();
+
         return view('livewire.discussion.replies', compact('replies'));
     }
 
@@ -65,6 +71,6 @@ class Replies extends Component
 
     public function toggleOnlyBest(): void
     {
-        $this->onlyBest = !$this->onlyBest;
+        $this->onlyBest = ! $this->onlyBest;
     }
 }

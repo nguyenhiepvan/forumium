@@ -3,7 +3,6 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\NotificationResource\Pages;
-use App\Filament\Resources\NotificationResource\RelationManagers;
 use App\Models\Notification;
 use Filament\Forms;
 use Filament\Resources\Form;
@@ -45,7 +44,7 @@ class NotificationResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('name')
-                    ->label('Name')
+                    ->label('Name'),
             ])
             ->filters([
                 //

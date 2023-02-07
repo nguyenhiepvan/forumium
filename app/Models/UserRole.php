@@ -13,7 +13,7 @@ class UserRole extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        'user_id', 'role_id'
+        'user_id', 'role_id',
     ];
 
     public function user(): BelongsTo

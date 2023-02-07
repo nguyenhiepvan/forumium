@@ -12,7 +12,7 @@ class Permission extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
-        'name', 'description'
+        'name', 'description',
     ];
 
     public function roles(): BelongsToMany

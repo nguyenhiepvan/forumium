@@ -3,7 +3,6 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\ConfigurationResource\Pages;
-use App\Filament\Resources\ConfigurationResource\RelationManagers;
 use App\Models\Configuration;
 use Filament\Forms;
 use Filament\Resources\Form;
@@ -50,7 +49,7 @@ class ConfigurationResource extends Resource
                     ->label('Configuration enabled?'),
                 Tables\Columns\TextColumn::make('updated_at')
                     ->dateTime()
-                    ->label('Last update')
+                    ->label('Last update'),
             ])
             ->filters([
                 //

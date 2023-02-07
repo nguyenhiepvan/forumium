@@ -4,7 +4,6 @@ namespace App\Core;
 
 enum PointsConstants: string
 {
-
     case START_DISCUSSION = 'start-discussion';
     case DISCUSSION_DELETED = 'discussion-deleted';
     case DISCUSSION_LIKED = 'discussion-liked';
@@ -42,6 +41,7 @@ enum PointsConstants: string
             self::COMMENT_LIKED->value => 1,
             self::COMMENT_DISLIKED->value => -1,
         ];
+
         return $points[$name] ?? 0;
     }
 
@@ -49,5 +49,4 @@ enum PointsConstants: string
     {
         return self::value($name) < 0;
     }
-
 }

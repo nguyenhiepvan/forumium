@@ -42,7 +42,7 @@ class DiscussionsSeeder extends Seeder
                             ->attach(
                                 $user->id,
                                 [
-                                    'type' => collect(array_column(FollowerConstants::cases(), 'value'))->random(1)[0]
+                                    'type' => collect(array_column(FollowerConstants::cases(), 'value'))->random(1)[0],
                                 ]
                             );
                     });

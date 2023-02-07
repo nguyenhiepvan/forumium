@@ -12,7 +12,7 @@ class Social extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
-        'provider', 'token', 'name', 'email', 'user_id'
+        'provider', 'token', 'name', 'email', 'user_id',
     ];
 
     public function user(): BelongsTo

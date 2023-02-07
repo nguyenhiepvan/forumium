@@ -12,7 +12,7 @@ class Point extends Model
     use HasFactory;
 
     protected $fillable = [
-        'user_id', 'source_type', 'source_id', 'type', 'value'
+        'user_id', 'source_type', 'source_id', 'type', 'value',
     ];
 
     public function user(): BelongsTo

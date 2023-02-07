@@ -3,22 +3,24 @@
 namespace App\Http\Livewire\Profile;
 
 use App\Models\Comment;
-use App\Models\Reply;
 use Livewire\Component;
 
 class Comments extends Component
 {
     public $user;
+
     public $limitPerPage = 10;
+
     public $disableLoadMore = false;
 
     protected $listeners = [
-        'loadMore'
+        'loadMore',
     ];
 
     public function render()
     {
         $comments = $this->loadData();
+
         return view('livewire.profile.comments', compact('comments'));
     }
 

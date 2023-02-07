@@ -42,12 +42,12 @@ class Login extends Component implements HasForms
 
             Password::make('password')
                 ->label('Password')
-                ->visible(fn() => !$this->forgotPassword)
+                ->visible(fn () => ! $this->forgotPassword)
                 ->required(),
 
             Checkbox::make('remember')
                 ->label('Remember me')
-                ->visible(fn() => !$this->forgotPassword),
+                ->visible(fn () => ! $this->forgotPassword),
         ];
     }
 
@@ -62,7 +62,7 @@ class Login extends Component implements HasForms
 
     public function toggleForgotPassword(): void
     {
-        $this->forgotPassword = !$this->forgotPassword;
+        $this->forgotPassword = ! $this->forgotPassword;
     }
 
     private function login(): void
@@ -79,7 +79,7 @@ class Login extends Component implements HasForms
         }
         $data = $this->form->getState();
 
-        if (!Filament::auth()->attempt([
+        if (! Filament::auth()->attempt([
             'email' => $data['email'],
             'password' => $data['password'],
         ], $data['remember'])) {
@@ -102,13 +102,13 @@ class Login extends Component implements HasForms
     private function sendForgotPasswordEmail(): void
     {
         $data = $this->form->getState();
-        if (!User::where('email', $data['email'])->count()) {
+        if (! User::where('email', $data['email'])->count()) {
             throw ValidationException::withMessages([
                 'email' => __('validation.exists', ['attribute' => 'email']),
             ]);
         }
         $status = PasswordFacade::sendResetLink([
-            'email' => $data['email']
+            'email' => $data['email'],
         ]);
         if ($status === PasswordFacade::RESET_LINK_SENT) {
             Filament::notify('success', __($status));

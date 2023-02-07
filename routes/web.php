@@ -42,10 +42,10 @@ Route::get('/reset-password/{token}', function (string $token) {
 })->middleware('guest')
     ->name('password.reset');
 
-Route::get("redirect/{provider}", [SocialiteController::class, 'redirect'])
+Route::get('redirect/{provider}', [SocialiteController::class, 'redirect'])
     ->name('socialite.redirect');
 
-Route::get("callback/{provider}", [SocialiteController::class, 'callback'])
+Route::get('callback/{provider}', [SocialiteController::class, 'callback'])
     ->name('socialite.callback');
 
 Route::view('tags', 'tags')
@@ -57,20 +57,19 @@ Route::get('tag/{tag}/{slug}', function (Tag $tag) {
     ->name('tag');
 
 Route::get('search', function () {
-    if (!request('q')) {
+    if (! request('q')) {
         return redirect()->route('home');
     }
+
     return view('search');
 })
     ->name('search');
 
 Route::middleware(['auth', 'verified'])
     ->group(function () {
-
         Route::group(
             ['as' => 'profile.', 'prefix' => 'profile'],
             function () {
-
                 Route::view('/', 'profile.index')
                     ->name('index');
 
@@ -100,7 +99,6 @@ Route::middleware(['auth', 'verified'])
 
                 Route::view('/comments', 'profile.comments')
                     ->name('comments');
-
             }
         );
 
@@ -111,6 +109,7 @@ Route::middleware(['auth', 'verified'])
                     if ($user->id == auth()->user()->id) {
                         return redirect()->route('profile.index');
                     }
+
                     return view('profile.index', compact('user'));
                 })
                     ->name('index');
@@ -154,11 +153,9 @@ Route::middleware(['auth', 'verified'])
                     return view('profile.comments', compact('user'));
                 })
                     ->name('comments');
-
             }
         );
 
         Route::get('logout', LogoutController::class)
             ->name('logout');
-
     });

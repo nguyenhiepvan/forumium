@@ -7,6 +7,7 @@ use Livewire\Component;
 class WorldMapVisits extends Component
 {
     public $user;
+
     public $data = [];
 
     public function mount(): void
@@ -26,13 +27,13 @@ class WorldMapVisits extends Component
         foreach ($visits as $visit) {
             if ($visit->meta->location) {
                 if ($data->where('id', $visit->meta->location->countryCode)->count()) {
-                    $data->filter(fn($item) => $item['id'] == $visit->meta->location->countryCode)
-                        ->each(fn($item) => $item['value'] += 1);
+                    $data->filter(fn ($item) => $item['id'] == $visit->meta->location->countryCode)
+                        ->each(fn ($item) => $item['value'] += 1);
                 } else {
                     $data->push(collect([
                         'id' => $visit->meta->location->countryCode,
                         'name' => $visit->meta->location->countryName,
-                        'value' => 1
+                        'value' => 1,
                     ]));
                 }
             }

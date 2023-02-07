@@ -8,18 +8,23 @@ use Livewire\Component;
 class Discussions extends Component
 {
     public $user;
+
     public $limitPerPage = 10;
+
     public $disableLoadMore = false;
+
     public $follow = null;
+
     public $totalCount = 0;
 
     protected $listeners = [
-        'loadMore'
+        'loadMore',
     ];
 
     public function render()
     {
         $discussions = $this->loadData();
+
         return view('livewire.profile.discussions', compact('discussions'));
     }
 

@@ -10,7 +10,7 @@ class ReplyBtn extends Component
     public Discussion $discussion;
 
     protected $listeners = [
-        'discussionEdited'
+        'discussionEdited',
     ];
 
     public function render()

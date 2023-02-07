@@ -11,7 +11,6 @@ use App\Models\Discussion;
 use App\Models\Reply as ReplyModel;
 use App\Models\User;
 use Filament\Facades\Filament;
-use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
 use Illuminate\Support\Str;
@@ -22,6 +21,7 @@ class Reply extends Component implements HasForms
     use InteractsWithForms;
 
     public Discussion $discussion;
+
     public ReplyModel|null $reply = null;
 
     public function mount(): void
@@ -50,12 +50,12 @@ class Reply extends Component implements HasForms
                                 'key' => $user->name,
                                 'link' => route('user.index', [
                                     'user' => $user,
-                                    'slug' => Str::slug($user->name)
-                                ])
+                                    'slug' => Str::slug($user->name),
+                                ]),
                             ])
                         ->toArray()
                 )
-                ->required()
+                ->required(),
         ];
     }
 
@@ -70,7 +70,7 @@ class Reply extends Component implements HasForms
             ReplyModel::create([
                 'user_id' => auth()->user()->id,
                 'discussion_id' => $this->discussion->id,
-                'content' => $data['content']
+                'content' => $data['content'],
             ]);
             $message = 'Reply added successfully';
             dispatch(new DispatchNotificationsJob(auth()->user(), NotificationConstants::POST_IN_DISCUSSION->value, $this->discussion));

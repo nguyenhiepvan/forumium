@@ -56,7 +56,7 @@ class Register extends Component implements HasForms
         $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
-            'password' => bcrypt($data['password'])
+            'password' => bcrypt($data['password']),
         ]);
         event(new Registered($user));
         auth()->login($user);

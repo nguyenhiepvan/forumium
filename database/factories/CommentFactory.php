@@ -21,6 +21,7 @@ class CommentFactory extends Factory
     public function definition()
     {
         $source = $this->randomSource();
+
         return [
             'content' => fake()->text(300),
             'user_id' => User::all()->random()->id,
@@ -32,9 +33,9 @@ class CommentFactory extends Factory
     private function randomSource(): Model
     {
         $sourceType = collect([Discussion::class, Reply::class])->random();
-        $data = call_user_func($sourceType . '::all');
+        $data = call_user_func($sourceType.'::all');
         $source = null;
-        if (!$data->isEmpty()) {
+        if (! $data->isEmpty()) {
             $source = $data->random();
         }
         if ($sourceType && $source) {

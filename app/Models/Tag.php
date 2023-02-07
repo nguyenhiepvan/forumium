@@ -12,7 +12,7 @@ class Tag extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
-        'name', 'color', 'icon', 'description'
+        'name', 'color', 'icon', 'description',
     ];
 
     public function discussions(): BelongsToMany

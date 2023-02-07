@@ -19,7 +19,7 @@ class ReplyFactory extends Factory
     public function definition()
     {
         return [
-            'content' => '<p>' . fake()->paragraphs(3, true) . '</p>',
+            'content' => '<p>'.fake()->paragraphs(3, true).'</p>',
             'user_id' => User::all()->random()->id,
             'discussion_id' => Discussion::all()->random()->id,
             'is_best' => collect([true, false])->random(),

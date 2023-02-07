@@ -8,16 +8,19 @@ use Livewire\Component;
 class Likes extends Component
 {
     public $user;
+
     public $limitPerPage = 10;
+
     public $disableLoadMore = false;
 
     protected $listeners = [
-        'loadMore'
+        'loadMore',
     ];
 
     public function render()
     {
         $likes = $this->loadData();
+
         return view('livewire.profile.likes', compact('likes'));
     }
 

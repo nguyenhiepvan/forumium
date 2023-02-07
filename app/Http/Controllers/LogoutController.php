@@ -8,12 +8,11 @@ use Illuminate\Support\Facades\Session;
 
 class LogoutController extends Controller
 {
-
     public function __invoke(): RedirectResponse
     {
         Session::flush();
         Auth::logout();
+
         return redirect()->route('home');
     }
-
 }

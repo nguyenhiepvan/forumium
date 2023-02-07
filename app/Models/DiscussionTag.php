@@ -13,7 +13,7 @@ class DiscussionTag extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        'discussion_id', 'tag_id'
+        'discussion_id', 'tag_id',
     ];
 
     public function tag(): BelongsTo

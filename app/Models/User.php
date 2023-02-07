@@ -31,7 +31,7 @@ class User extends Authenticatable implements MustVerifyEmail, CanResetPassword,
         'bio',
         'is_email_visible',
         'picture',
-        'total_points'
+        'total_points',
     ];
 
     /**
@@ -60,7 +60,7 @@ class User extends Authenticatable implements MustVerifyEmail, CanResetPassword,
         static::created(function (User $item) {
             UserRole::create([
                 'role_id' => Role::where('name', RoleConstants::MEMBER->value)->first()->id,
-                'user_id' => $item->id
+                'user_id' => $item->id,
             ]);
         });
     }
@@ -83,13 +83,14 @@ class User extends Authenticatable implements MustVerifyEmail, CanResetPassword,
     public function can($abilities, $arguments = []): bool
     {
         $permissions = [];
-        if (!is_iterable($abilities)) {
+        if (! is_iterable($abilities)) {
             $permissions = [$abilities];
         } else {
             foreach ($abilities as $ability) {
                 $permissions[] = $ability;
             }
         }
+
         return $this->roles->pluck('permissions')->flatten()->whereIn('name', $permissions)->count();
     }
 
@@ -136,21 +137,21 @@ class User extends Authenticatable implements MustVerifyEmail, CanResetPassword,
     public function discussionsTotalViews(): Attribute
     {
         return new Attribute(
-            get: fn() => $this->discussions()->sum('visits')
+            get: fn () => $this->discussions()->sum('visits')
         );
     }
 
     public function discussionsTotalUniqueViews(): Attribute
     {
         return new Attribute(
-            get: fn() => $this->discussions()->sum('unique_visits')
+            get: fn () => $this->discussions()->sum('unique_visits')
         );
     }
 
     public function lastActivity(): Attribute
     {
         return new Attribute(
-            get: fn() => $this->discussions
+            get: fn () => $this->discussions
                     ->merge($this->replies)
                     ->merge($this->comments)
                     ->merge($this->likes)
@@ -168,6 +169,7 @@ class User extends Authenticatable implements MustVerifyEmail, CanResetPassword,
         if ($isMail) {
             $query->where('via_email', true);
         }
+
         return $query->count() > 0;
     }
 }

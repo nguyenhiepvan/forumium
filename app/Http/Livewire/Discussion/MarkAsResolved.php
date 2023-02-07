@@ -17,7 +17,7 @@ class MarkAsResolved extends Component
 
     public function toggleResolvedFlag(): void
     {
-        $this->discussion->is_resolved = !$this->discussion->is_resolved;
+        $this->discussion->is_resolved = ! $this->discussion->is_resolved;
         $this->discussion->save();
         Filament::notify(
             'success',

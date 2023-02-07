@@ -24,7 +24,7 @@ class ForgotPassword extends Component implements HasForms
     public function mount()
     {
         $this->form->fill([
-            'email' => request()->get('email')
+            'email' => request()->get('email'),
         ]);
     }
 
@@ -48,7 +48,7 @@ class ForgotPassword extends Component implements HasForms
 
             Password::make('password_confirmation')
                 ->label('Password confirmation')
-                ->required()
+                ->required(),
         ];
     }
 
@@ -60,11 +60,11 @@ class ForgotPassword extends Component implements HasForms
                 'email' => $data['email'],
                 'password' => $data['password'],
                 'password_confirmation' => $data['password_confirmation'],
-                'token' => $this->token
+                'token' => $this->token,
             ],
             function ($user, $password) {
                 $user->forceFill([
-                    'password' => Hash::make($password)
+                    'password' => Hash::make($password),
                 ])->setRememberToken(Str::random(60));
                 $user->save();
                 Auth::login($user);

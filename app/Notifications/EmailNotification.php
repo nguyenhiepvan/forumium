@@ -11,7 +11,9 @@ class EmailNotification extends Notification
     use Queueable;
 
     private string $title;
+
     private string $body;
+
     private string|null $url;
 
     /**
@@ -29,7 +31,7 @@ class EmailNotification extends Notification
     /**
      * Get the notification's delivery channels.
      *
-     * @param mixed $notifiable
+     * @param  mixed  $notifiable
      * @return array
      */
     public function via($notifiable)
@@ -40,7 +42,7 @@ class EmailNotification extends Notification
     /**
      * Get the mail representation of the notification.
      *
-     * @param mixed $notifiable
+     * @param  mixed  $notifiable
      * @return \Illuminate\Notifications\Messages\MailMessage
      */
     public function toMail($notifiable)
@@ -51,14 +53,15 @@ class EmailNotification extends Notification
         if ($this->url) {
             $mail->action('More details', $this->url);
         }
-        $mail->line('Thank you for using ' . config('app.name') . '!');
+        $mail->line('Thank you for using '.config('app.name').'!');
+
         return $mail;
     }
 
     /**
      * Get the array representation of the notification.
      *
-     * @param mixed $notifiable
+     * @param  mixed  $notifiable
      * @return array
      */
     public function toArray($notifiable)

@@ -2,9 +2,7 @@
 
 namespace App\Filament\Resources;
 
-use App\Core\PermissionConstants;
 use App\Filament\Resources\UserResource\Pages;
-use App\Filament\Resources\UserResource\RelationManagers;
 use App\Models\User;
 use Filament\Forms;
 use Filament\Resources\Form;
@@ -41,7 +39,7 @@ class UserResource extends Resource
                     ->multiple()
                     ->required()
                     ->preload()
-                    ->relationship('roles', 'name')
+                    ->relationship('roles', 'name'),
             ]);
     }
 
@@ -61,7 +59,7 @@ class UserResource extends Resource
 
                 Tables\Columns\TagsColumn::make('roles.name')
                     ->label('Roles')
-                    ->limit()
+                    ->limit(),
             ])
             ->filters([
                 //

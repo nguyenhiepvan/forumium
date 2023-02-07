@@ -9,15 +9,14 @@ use Illuminate\Database\Seeder;
 
 class UsersSeeder extends Seeder
 {
-
     public static array $admin = [
         'name' => 'Administrator',
-        'email' => 'admin@forumium.app'
+        'email' => 'admin@forumium.app',
     ];
 
     public static array $mod = [
         'name' => 'Moderator',
-        'email' => 'mod@forumium.app'
+        'email' => 'mod@forumium.app',
     ];
 
     /**
@@ -28,7 +27,7 @@ class UsersSeeder extends Seeder
     public function run()
     {
         // Admin
-        if (!User::where('email', self::$admin['email'])->count()) {
+        if (! User::where('email', self::$admin['email'])->count()) {
             $data = self::$admin;
             $data['email_verified_at'] = now();
             $data['password'] = $this->getPassword();
@@ -38,7 +37,7 @@ class UsersSeeder extends Seeder
         }
 
         // Mod
-        if (!User::where('email', self::$mod['email'])->count()) {
+        if (! User::where('email', self::$mod['email'])->count()) {
             $data = self::$mod;
             $data['email_verified_at'] = now();
             $data['password'] = $this->getPassword();
@@ -55,7 +54,7 @@ class UsersSeeder extends Seeder
                         'notification_id' => $notification->id,
                         'user_id' => $user->id,
                         'via_web' => collect([true, false])->random(),
-                        'via_email' => collect([true, false])->random()
+                        'via_email' => collect([true, false])->random(),
                     ]);
                 });
         });
@@ -63,6 +62,6 @@ class UsersSeeder extends Seeder
 
     private function getPassword(): string
     {
-        return bcrypt("123456");
+        return bcrypt('123456');
     }
 }

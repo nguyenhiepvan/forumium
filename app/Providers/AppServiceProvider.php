@@ -49,7 +49,7 @@ class AppServiceProvider extends ServiceProvider
 
         // Add custom meta (favicon)
         Filament::pushMeta([
-            new HtmlString('<link rel="icon" type="image/x-icon" href="' . asset('favicon.svg') . '">'),
+            new HtmlString('<link rel="icon" type="image/x-icon" href="'.asset('favicon.svg').'">'),
         ]);
     }
 }

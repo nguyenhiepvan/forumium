@@ -3,13 +3,13 @@
 namespace App\Http\Livewire\Profile;
 
 use App\Core\SocialConstants;
-use App\Models\Social;
 use Filament\Facades\Filament;
 use Livewire\Component;
 
 class Socials extends Component
 {
     public $user;
+
     public $providers;
 
     public function mount()
@@ -34,7 +34,7 @@ class Socials extends Component
     public function deleteProvider(string $provider): void
     {
         $this->user->socials()->where('provider', $provider)->delete();
-        Filament::notify('success', 'Social account ' . $provider . ' unlinked successfully.');
+        Filament::notify('success', 'Social account '.$provider.' unlinked successfully.');
         $this->user->refresh();
     }
 }

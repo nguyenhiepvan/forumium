@@ -17,8 +17,11 @@ class CalculateUserPointsJob implements ShouldQueue
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     public $user;
+
     public $source;
+
     public $type;
+
     public $notify;
 
     /**
@@ -59,17 +62,16 @@ class CalculateUserPointsJob implements ShouldQueue
                 'source_type' => get_class($this->source),
                 'source_id' => $this->source->id,
                 'type' => $this->type,
-                'value' => $points
+                'value' => $points,
             ]);
             $this->user->total_points = $this->user->total_points + $points;
             $this->user->save();
             if ($this->notify) {
                 dispatch(new DispatchNotificationsJob($this->user, NotificationConstants::POINTS_UPDATED->value, [
                     'added' => $point->value,
-                    'current' => $this->user->total_points
+                    'current' => $this->user->total_points,
                 ]));
             }
         }
     }
-
 }

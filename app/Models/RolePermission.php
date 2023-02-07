@@ -13,7 +13,7 @@ class RolePermission extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        'role_id', 'permission_id'
+        'role_id', 'permission_id',
     ];
 
     public function role(): BelongsTo

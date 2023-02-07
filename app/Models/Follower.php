@@ -13,7 +13,7 @@ class Follower extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        'user_id', 'discussion_id', 'type'
+        'user_id', 'discussion_id', 'type',
     ];
 
     public function user(): BelongsTo

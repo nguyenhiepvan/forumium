@@ -22,17 +22,23 @@ class ReplyDetails extends Component implements HasForms
     use InteractsWithForms;
 
     public Reply $reply;
+
     public int $likes = 0;
+
     public int $comments = 0;
+
     public bool $edit = false;
+
     public bool $showComments = false;
+
     public Comment|null $comment = null;
+
     public $selectedComment = null;
 
     protected $listeners = [
         'doDelete',
         'doDeleteReplyComment',
-        'replyCommentSaved'
+        'replyCommentSaved',
     ];
 
     public function mount(): void
@@ -64,7 +70,7 @@ class ReplyDetails extends Component implements HasForms
             $source = Like::create([
                 'user_id' => auth()->user()->id,
                 'source_id' => $this->reply->id,
-                'source_type' => Reply::class
+                'source_type' => Reply::class,
             ]);
             dispatch(new DispatchNotificationsJob(auth()->user(), NotificationConstants::MY_POSTS_LIKED->value, $source));
         }
@@ -91,7 +97,7 @@ class ReplyDetails extends Component implements HasForms
 
                 Action::make('cancel')
                     ->label('Cancel')
-                    ->close()
+                    ->close(),
             ])
             ->persistent()
             ->send();
@@ -121,7 +127,7 @@ class ReplyDetails extends Component implements HasForms
                 ->rows(2)
                 ->placeholder('Type your comment here...')
                 ->helperText('You can write a comment containing up to 300 characters.')
-                ->maxLength(300)
+                ->maxLength(300),
         ];
     }
 
@@ -135,7 +141,7 @@ class ReplyDetails extends Component implements HasForms
     {
         $this->comment = $comment;
         $this->form->fill([
-            'content' => $comment->content
+            'content' => $comment->content,
         ]);
     }
 
@@ -161,7 +167,7 @@ class ReplyDetails extends Component implements HasForms
 
                 Action::make('cancel')
                     ->label('Cancel')
-                    ->close()
+                    ->close(),
             ])
             ->persistent()
             ->send();
@@ -183,7 +189,7 @@ class ReplyDetails extends Component implements HasForms
         $this->comment->content = $data['content'];
         $isCreation = false;
 
-        if (!$this->comment->id) {
+        if (! $this->comment->id) {
             $this->comment->user_id = auth()->user()->id;
             $this->comment->source_id = $this->reply->id;
             $this->comment->source_type = Reply::class;
@@ -220,7 +226,7 @@ class ReplyDetails extends Component implements HasForms
             $source = Like::create([
                 'user_id' => auth()->user()->id,
                 'source_id' => $comment,
-                'source_type' => Comment::class
+                'source_type' => Comment::class,
             ]);
             dispatch(new DispatchNotificationsJob(auth()->user(), NotificationConstants::MY_POSTS_LIKED->value, $source));
         }
@@ -232,7 +238,7 @@ class ReplyDetails extends Component implements HasForms
 
     public function toggleComments(): void
     {
-        $this->showComments = !$this->showComments;
+        $this->showComments = ! $this->showComments;
         if ($this->showComments) {
             $this->dispatchBrowserEvent('replyCommentsLoaded');
         }
@@ -245,7 +251,7 @@ class ReplyDetails extends Component implements HasForms
 
     public function toggleBestFlag(): void
     {
-        $this->reply->is_best = !$this->reply->is_best;
+        $this->reply->is_best = ! $this->reply->is_best;
         $this->reply->save();
         $this->reply->refresh();
 
@@ -261,7 +267,7 @@ class ReplyDetails extends Component implements HasForms
     {
         $this->selectedComment = $this->reply->comments()->where('id', $comment)->first();
         $this->dispatchBrowserEvent('replyCommentSelected', [
-            'id' => $comment
+            'id' => $comment,
         ]);
     }
 }

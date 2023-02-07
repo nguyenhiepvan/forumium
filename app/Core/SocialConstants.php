@@ -4,13 +4,12 @@ namespace App\Core;
 
 enum SocialConstants: string
 {
+    case FACEBOOK = 'facebook';
+    case GITHUB = 'github';
+    case GOOGLE = 'google';
+    case TWITTER = 'twitter';
 
-    case FACEBOOK = "facebook";
-    case GITHUB = "github";
-    case GOOGLE = "google";
-    case TWITTER = "twitter";
-
-    case ENABLED_SOCIALS = "facebook,github,google";
+    case ENABLED_SOCIALS = 'facebook,github,google';
 
     public static function color(string $name)
     {
@@ -25,6 +24,7 @@ enum SocialConstants: string
     public static function isEnabled(string $name)
     {
         $enabledSocials = explode(',', self::ENABLED_SOCIALS->value);
+
         return in_array($name, $enabledSocials);
     }
 
@@ -36,7 +36,7 @@ enum SocialConstants: string
                 $socials[] = $social;
             }
         }
+
         return $socials;
     }
-
 }

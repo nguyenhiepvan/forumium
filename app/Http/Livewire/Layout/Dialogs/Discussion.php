@@ -49,7 +49,7 @@ class Discussion extends Component implements HasForms
         return [
             Toggle::make('is_public')
                 ->label('Is this discussion public?')
-                ->visible(fn() => ConfigurationConstants::case('Enable public discussions')),
+                ->visible(fn () => ConfigurationConstants::case('Enable public discussions')),
 
             Grid::make()
                 ->columns(5)
@@ -95,27 +95,27 @@ class Discussion extends Component implements HasForms
                 'name' => $data['name'],
                 'user_id' => auth()->user()->id,
                 'content' => $data['content'],
-                'is_public' => $data['is_public'] ?? false
+                'is_public' => $data['is_public'] ?? false,
             ]);
             dispatch(new CalculateUserPointsJob(user: auth()->user(), source: $discussion, type: PointsConstants::START_DISCUSSION->value));
         }
         foreach ($data['tags'] as $tag) {
             DiscussionTag::create([
                 'discussion_id' => $discussion->id,
-                'tag_id' => $tag
+                'tag_id' => $tag,
             ]);
         }
         Filament::notify(
             'success',
             ($update ? 'Discussion updated successfully' : 'Discussion created successfully'),
-            !$update
+            ! $update
         );
         if ($update) {
             $this->emit('discussionEdited');
         } else {
             $this->redirect(route('discussion', [
                 'discussion' => $discussion,
-                'slug' => Str::slug($discussion->name)
+                'slug' => Str::slug($discussion->name),
             ]));
         }
     }

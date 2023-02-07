@@ -37,13 +37,14 @@ class Notifications extends Component implements HasForms
                     Placeholder::make($notification->name)
                         ->columnSpan(2),
 
-                    Toggle::make('notification_' . $notification->id . '_web')
+                    Toggle::make('notification_'.$notification->id.'_web')
                         ->label('Web'),
 
-                    Toggle::make('notification_' . $notification->id . '_email')
+                    Toggle::make('notification_'.$notification->id.'_email')
                         ->label('Email'),
                 ]);
         }
+
         return $fields;
     }
 
@@ -54,11 +55,11 @@ class Notifications extends Component implements HasForms
         foreach ($data as $key => $value) {
             $field = explode('_', $key);
             $id = $field[1];
-            $column = 'via_' . $field[2];
+            $column = 'via_'.$field[2];
             $notification = UserNotification::where('user_id', $user->id)
                 ->where('notification_id', $id)
                 ->first();
-            if (!$notification) {
+            if (! $notification) {
                 $notification = new UserNotification();
                 $notification->user_id = $user->id;
                 $notification->notification_id = $id;
@@ -74,8 +75,8 @@ class Notifications extends Component implements HasForms
     {
         $data = [];
         foreach (auth()->user()->appNotifications as $notification) {
-            $data['notification_' . $notification->id . '_web'] = $notification->pivot->via_web;
-            $data['notification_' . $notification->id . '_email'] = $notification->pivot->via_email;
+            $data['notification_'.$notification->id.'_web'] = $notification->pivot->via_web;
+            $data['notification_'.$notification->id.'_email'] = $notification->pivot->via_email;
         }
         $this->form->fill($data);
     }
